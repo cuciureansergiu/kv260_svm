@@ -1,0 +1,9 @@
+*.jou
+*.log
+*.Xil
+*.metadata
+*.jpg
+*.bin
+bin
+sw/vitis/
+hw/vivado
