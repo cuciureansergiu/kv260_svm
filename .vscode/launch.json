@@ -1,0 +1,31 @@
+{
+    "configurations": [
+        {
+            "name": "Debug APU",
+            "type": "cppdbg",
+            "request": "launch",
+            "miDebuggerPath": "aarch64-none-elf-gdb",
+            "targetArchitecture": "arm64",
+            "program": "${workspaceRoot}/bin/debug.elf",
+            "cwd": "${workspaceRoot}",
+            "externalConsole": false,
+            "stopOnEntry": true,
+            "setupCommands": [
+            {
+                "text": "file ${workspaceRoot}/bin/debug.elf",
+            },
+            {
+                "text": "tar ext localhost:3001"
+            },
+            {
+                "text": "monitor ps"
+            },
+            {
+                "text": "set confirm off"
+            }
+                
+            ],
+            "preLaunchTask": "apuinit"
+        }
+    ]
+}

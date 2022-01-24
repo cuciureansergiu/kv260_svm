@@ -1,0 +1,36 @@
+{
+        "version": "2.0.0",
+        "tasks": [
+                {
+                        "label": "build",
+                        "type": "shell",
+                        "command": "make",
+                        "args": [
+                                "sw/build"
+                        ],
+                        "group": {
+                                "kind": "build",
+                                "isDefault": true
+                        },
+                        "problemMatcher": []
+                },
+                {
+                        "label": "apuinit",
+                        "type": "shell",
+                        "command": "make",
+                        "args": [
+                                "sw/apuinit"
+                        ],
+                        "problemMatcher": [],
+                },
+                {
+                        "label": "clean",
+                        "type": "shell",
+                        "command": "make",
+                        "args": [
+                                "sw/clean",
+                        ],
+                        "problemMatcher": []
+                }
+        ]
+    }
