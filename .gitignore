@@ -1,0 +1,10 @@
+*.jou
+*.log
+*.Xil
+*.metadata
+*.jpg
+*.bin
+bin
+sw/vitis/
+hw/vivado
+.qt_for_python
