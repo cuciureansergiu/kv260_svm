@@ -4,7 +4,7 @@ set constraints [exec ls -d $::env(ROOT_DIR)/hw/constraints/]
 set proj_name $::env(NAME)
 set proj_dir hw/vivado
 
-create_project -name $proj_name -force -dir $::env(ROOT_DIR)/hw/vivado -part xck26-sfvc784-2LV-c
+create_project -name $proj_name -force -dir $::env(ROOT_DIR)/hw/vivado -part $::env(PART)
 set_property BOARD_PART [get_board_parts "*:kv260:*" -latest_file_version] [current_project]
 
 

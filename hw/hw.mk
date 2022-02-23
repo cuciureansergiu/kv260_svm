@@ -1,10 +1,10 @@
 VIVADO_SCRIPT:=${ROOT_DIR}/hw/project.tcl
 XSA:=${ROOT_DIR}/hw/vivado/${NAME}.xsa 
 
-.SILENT: hw hw/project hw/clean hw/fclean
-.PHONY: hw hw/debug
+.SILENT: hw/all hw/project hw/clean hw/fclean
+.PHONY: hw/all hw/debug
 
-hw: ${XSA}
+hw/all: ${XSA}
 
 ${XSA}: deps	
 	mkdir -p ${ROOT_DIR}/hw/vivado

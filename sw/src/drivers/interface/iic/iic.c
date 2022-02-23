@@ -92,6 +92,18 @@ int iic_write16read8(unsigned short reg, unsigned char *val)
     return iic_read(val, 1);
 }
 
+int iic_write32(unsigned short reg, unsigned char val)
+{
+    unsigned char buff[4] = {
+        ((reg >> 8) & 0xff),
+        (reg & 0xff),
+        ((val >> 8) & 0xff),
+        (val & 0xff)
+    };
+
+    return iic_write(buff, 4);
+}
+
 int iic_write_dev(unsigned char addr, unsigned char val)
 {
     unsigned char init_addr = sys_iic.dev_addr;

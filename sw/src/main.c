@@ -35,7 +35,7 @@ int main()
 	status = ov5640_init();
 	if (status < 0)
 		return status;
-
+	// addi9035_init();
 
 	status = vdma_init(0, video_modes[v_1280x720].height, video_modes[v_1280x720].width);
 	if (status < 0)
@@ -44,30 +44,31 @@ int main()
 	status = XV_demosaic_Initialize(&cfa, XPAR_V_DEMOSAIC_0_DEVICE_ID);
 	//	 XV_demosaic_Set_HwReg_width(&cfa, video_modes[v_1280x720].width);
 	//	 XV_demosaic_Set_HwReg_height(&cfa, video_modes[v_1280x720].height);
-	 XV_demosaic_Set_HwReg_width(&cfa, 1280);
-	 XV_demosaic_Set_HwReg_height(&cfa, 720);
-	 XV_demosaic_Set_HwReg_bayer_phase(&cfa, 0x03);
-	 XV_demosaic_EnableAutoRestart(&cfa);
-	 XV_demosaic_Start(&cfa);
+	XV_demosaic_Set_HwReg_width(&cfa, 1280);
+	XV_demosaic_Set_HwReg_height(&cfa, 720);
+	XV_demosaic_Set_HwReg_bayer_phase(&cfa, 0x03);
+	XV_demosaic_EnableAutoRestart(&cfa);
+	XV_demosaic_Start(&cfa);
 
-	 gamma_calc(1.2);
-	 XV_gamma_lut_Initialize(&gamma_inst, XPAR_V_GAMMA_LUT_0_DEVICE_ID);
-	 XV_gamma_lut_Set_HwReg_width(&gamma_inst, 1280);
-	 XV_gamma_lut_Set_HwReg_height(&gamma_inst, 720);
-	 XV_gamma_lut_Set_HwReg_video_format(&gamma_inst, 0x00);
-	 XV_gamma_lut_Write_HwReg_gamma_lut_0_Bytes(&gamma_inst, 0, (int *)gamma_reg, 512);
-	 XV_gamma_lut_Write_HwReg_gamma_lut_1_Bytes(&gamma_inst, 0, (int *)gamma_reg, 512);
-	 XV_gamma_lut_Write_HwReg_gamma_lut_2_Bytes(&gamma_inst, 0, (int *)gamma_reg, 512);
-	 XV_gamma_lut_Start(&gamma_inst);
-	 XV_gamma_lut_EnableAutoRestart(&gamma_inst);
+	gamma_calc(1.2);
+	XV_gamma_lut_Initialize(&gamma_inst, XPAR_V_GAMMA_LUT_0_DEVICE_ID);
+	XV_gamma_lut_Set_HwReg_width(&gamma_inst, 1280);
+	XV_gamma_lut_Set_HwReg_height(&gamma_inst, 720);
+	XV_gamma_lut_Set_HwReg_video_format(&gamma_inst, 0x00);
+	XV_gamma_lut_Write_HwReg_gamma_lut_0_Bytes(&gamma_inst, 0, (int *)gamma_reg, 512);
+	XV_gamma_lut_Write_HwReg_gamma_lut_1_Bytes(&gamma_inst, 0, (int *)gamma_reg, 512);
+	XV_gamma_lut_Write_HwReg_gamma_lut_2_Bytes(&gamma_inst, 0, (int *)gamma_reg, 512);
+	XV_gamma_lut_Start(&gamma_inst);
+	XV_gamma_lut_EnableAutoRestart(&gamma_inst);
 
 	ov5640_ping();
 //	ov5640_sw_reset();
 //	usleep(1000000);
 //	ov5640_load_config(1);
-
+	
 	vdma_start();
 	Xil_DCacheFlush();
+	// addi9035_remove();
 	int a;
 	while (1)
 	{

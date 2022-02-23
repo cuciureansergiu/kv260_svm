@@ -8,10 +8,10 @@ define cmd
 	xsct $(VITIS_SCRIPT)$(1)
 endef
 
-.PHONY: sw sw/build ${ELF}
-.SILENT: sw sw/clean sw/fclean
+.PHONY: sw/all sw/build ${ELF}
+.SILENT: sw/all sw/clean sw/fclean
 
-sw: ${ELF}
+sw/all: ${ELF}
 
 ${ELF}: deps
 	mkdir -p ${ROOT_DIR}/sw/vitis

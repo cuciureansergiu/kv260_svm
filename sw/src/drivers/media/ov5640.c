@@ -1,7 +1,7 @@
 #include "../../drivers/interface/iic/iic.h"
+#include "../../util/error.h"
 #include "ov5640.h"
 #include "ov5640_fw.h"
-#include "../../util/error.h"
 #include "sleep.h"
 
 static int ov5640_iic_init()
