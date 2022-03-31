@@ -1,5 +1,16 @@
 {
         "files.associations": {
-                "math.h": "c"
-        }
+                "math.h": "c",
+                "iic.h": "c",
+                "array": "cpp",
+                "string": "cpp",
+                "string_view": "cpp",
+                "iosfwd": "cpp",
+                "chrono": "cpp",
+                "random": "cpp",
+                "limits": "cpp",
+                "algorithm": "cpp",
+                "memory_resource": "cpp"
+        },
+        "jupyter.jupyterServerType": "remote"
 }

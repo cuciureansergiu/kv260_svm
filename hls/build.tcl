@@ -1,15 +1,26 @@
-#open_project -reset proj_2D_convolution_with_linebuffer
-# setws hls/vitis
 open_project -reset $::env(NAME)
 
+############### ORIGINAL##############
+# # Add design files
+# add_files $::env(ROOT_DIR)/hls/src/convolution.cpp -cflags "-I/home/sergiu/Workspace/dev/adaptive-compute/Vitis_Libraries/vision/L1/include -I/home/sergiu/Workspace/dev/adaptive-compute/xil_opencv/install/include -std=c++0x"
+# add_files $::env(ROOT_DIR)/hls/src/convolution.h -cflags "-I/home/sergiu/Workspace/dev/adaptive-compute/Vitis_Libraries/vision/L1/include -I/home/sergiu/Workspace/dev/adaptive-compute/xil_opencv/install/include -std=c++0x"
+# # Add test bench & files
+# add_files -tb $::env(ROOT_DIR)/hls/src/convolution_test.cpp -cflags "-Wno-unknown-pragmas" -csimflags "-Wno-unknown-pragmas"
+
+############### NEW ##############
 # Add design files
-add_files $::env(ROOT_DIR)/hls/src/convolution.cpp -cflags "-I/home/sergiu/Workspace/dev/adaptive-compute/Vitis_Libraries/vision/L1/include -I/home/sergiu/Workspace/dev/adaptive-compute/xil_opencv/install/include -std=c++0x"
-add_files $::env(ROOT_DIR)/hls/src/convolution.h -cflags "-I/home/sergiu/Workspace/dev/adaptive-compute/Vitis_Libraries/vision/L1/include -I/home/sergiu/Workspace/dev/adaptive-compute/xil_opencv/install/include -std=c++0x"
+# add_files $::env(ROOT_DIR)/hls/src/filters/sobel/sobel.cpp -cflags "-I/home/sergiu/Workspace/dev/adaptive-compute/Vitis_Libraries/vision/L1/include -I/home/sergiu/Workspace/dev/adaptive-compute/xil_opencv/install/include -std=c++0x"
+# add_files $::env(ROOT_DIR)/hls/src/filters/sobel/sobel.h  -cflags "-I/home/sergiu/Workspace/dev/adaptive-compute/Vitis_Libraries/vision/L1/include -I/home/sergiu/Workspace/dev/adaptive-compute/xil_opencv/install/include -std=c++0x"
+# add_files $::env(ROOT_DIR)/hls/src/image.h -cflags "-I/home/sergiu/Workspace/dev/adaptive-compute/Vitis_Libraries/vision/L1/include -I/home/sergiu/Workspace/dev/adaptive-compute/xil_opencv/install/include -std=c++0x"
+add_files $::env(ROOT_DIR)/hls/src/filters/sobel/sobel.cpp -cflags "-std=c++14"
+add_files $::env(ROOT_DIR)/hls/src/filters/sobel/sobel.h  -cflags "-std=c++14"
+add_files $::env(ROOT_DIR)/hls/src/data/image.h -cflags "-std=c++14"
+
 # Add test bench & files
-add_files -tb $::env(ROOT_DIR)/hls/src/convolution_test.cpp -cflags "-Wno-unknown-pragmas" -csimflags "-Wno-unknown-pragmas"
+add_files -tb $::env(ROOT_DIR)/hls/src/tb_sobel.cpp -cflags "-Wno-unknown-pragmas" -csimflags "-Wno-unknown-pragmas"
 
 # Set the top-level function
-set_top filter11x11_strm
+set_top sobel
 
 # ########################################################
 # Create a solution
@@ -31,7 +42,7 @@ csynth_design
 
 
 ###########3wo
-# export_design -format ip_catalog
+export_design -format ip_catalog
 exit
 
 # open_project loop_opts_prj

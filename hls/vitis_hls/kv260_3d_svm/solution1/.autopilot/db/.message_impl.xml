@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Messages>
+	<Message severity="INFO" prefix="[IMPL 213-8]" key="IMPL_8_1776" tag="" content="Exporting RTL as a Vivado IP." resolution=""/>
+	<Message severity="INFO" prefix="[HLS 200-802]" key="HLS 200-802" tag="" content="Generated output file kv260_3d_svm/solution1/impl/export.zip" resolution=""/>
+	<Message severity="INFO" prefix="[HLS 200-111]" key="HLS_111_966" tag="RUNTIME" content="Finished Command export_design CPU user time: 18.3 seconds. CPU system time: 1.86 seconds. Elapsed time: 25.89 seconds; current allocated memory: 496.964 MB." resolution=""/>
+</Messages>

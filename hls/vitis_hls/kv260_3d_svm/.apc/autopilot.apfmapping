@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<autopilotfilemapping:AutoPilotFileMapping xmlns:autopilotfilemapping="www.autoesl.com/autopilotfilemapping">
+  <source>
+    <originFiles name="image.h" path="/home/sergiu/Workspace/dev/adaptive-compute/kv260/hls/src/data/image.h"/>
+    <originFiles name="sobel.h" path="/home/sergiu/Workspace/dev/adaptive-compute/kv260/hls/src/filters/sobel/sobel.h"/>
+    <originFiles name="sobel.cpp" path="/home/sergiu/Workspace/dev/adaptive-compute/kv260/hls/src/filters/sobel/sobel.cpp"/>
+  </source>
+  <testbench>
+    <originFiles name="tb_sobel.cpp" path="/home/sergiu/Workspace/dev/adaptive-compute/kv260/hls/src/tb_sobel.cpp"/>
+  </testbench>
+</autopilotfilemapping:AutoPilotFileMapping>

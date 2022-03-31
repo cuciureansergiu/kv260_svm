@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xd:acceleratorMap xmlns:xd="http://www.xilinx.com/xidane" xd:functionName="sobel" xd:componentRef="sobel" xd:initiationInterval="921629" xd:clockPeriod="10" xd:sequential="true" xd:hostMachine="64" xd:reset="control">
+  <xd:returnValue xd:interfaceRef="s_axi_control" xd:busTypeRef="axilite" xd:offset="0x10" xd:handshakeRef="ap_none" xd:dataWidth="32"/>
+  <xd:controlReg xd:name="control" xd:interfaceRef="s_axi_control" xd:busTypeRef="axilite" xd:type="generic_axi_lite" xd:offset="0x0"/>
+  <xd:latencyEstimates xd:best-case="921628" xd:worst-case="921628" xd:average-case="921628"/>
+  <xd:resourceEstimates xd:LUT="5675" xd:FF="4192" xd:BRAM="0" xd:DSP="45"/>
+</xd:acceleratorMap>

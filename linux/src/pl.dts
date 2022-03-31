@@ -1,0 +1,361 @@
+/dts-v1/;
+/plugin/;
+/ {
+        fragment@0 {
+                target-path="/amba";
+                __overlay__ {
+                        #address-cells = <0x02>;
+                        #size-cells = <0x02>;
+                        
+                        mipi_clk: mipi_clk {
+                                compatible = "fixed-clock";
+                                #clock-cells = <0>;
+                                clock-frequency = <0x16e3600>;
+                        };
+
+                        axi_intc: interrupt-controller@a0010000 {
+                                #interrupt-cells = <2>;
+                                clock-names = "s_axi_aclk";
+                                clocks = <&zynqmp_clk 71>;
+                                compatible = "xlnx,xps-intc-1.00.a";
+                                interrupt-controller ;
+                                interrupt-parent = <&gic>;
+                                interrupts = <0 34 4>;
+                                reg = <0x0 0xa0010000 0x0 0x10000>;
+                                xlnx,kind-of-intr = <0x0>;
+                                xlnx,num-intr-inputs = <0x8>;
+                        };
+
+
+                        axi_iic: i2c@a0060000 {
+                                #address-cells = <1>;
+                                #size-cells = <0>;
+		                clock-frequency = <1000000>;
+                                clock-names = "s_axi_aclk";
+                                clocks = <&zynqmp_clk 71>;
+                                // clocks = <&clk_wiz 1>;
+                                compatible = "xlnx,xps-iic-2.00.a";
+                                interrupt-names = "iic2intc_irpt";
+                                interrupt-parent = <&gic>;
+                                interrupts = <0 0 4>;
+                                reg = <0x0 0xa0060000 0x0 0x10000>;
+
+                                i2c-mux@74 {
+                                        #address-cells = <0x01>;
+                                        #size-cells = <0x00>;
+                                        compatible = "nxp,pca9546";
+                                        reg = <0x74>;
+        				i2c@0 {
+        					#address-cells = <0x01>;
+        					#size-cells = <0x00>;
+        					reg = <0x00>;
+        				};
+
+        				i2c@1 {
+        					#address-cells = <0x01>;
+        					#size-cells = <0x00>;
+        					reg = <0x01>;
+        				};
+
+
+                                        i2c@2 {
+                                                #address-cells = <0x01>;
+                                                #size-cells = <0x00>;
+                                                label = "RPICAM";
+                                                reg = <0x02>;
+                                                // cam@64 {
+                                                //         #address-cells = <0x01>;
+                                                //         clocks = <&mipi_clk>;
+                                                //         #size-cells = <0x00>;
+                                                //         reset-gpios = <&gpio 0x51 0x0>;
+                                                //         compatible = "onnn,ap1302";
+                                                //         reg = <0x64>;
+                                                // };
+
+                                                // camera@3c {
+                                                //         compatible = "ovti,ov5640";
+                                                //         reg = <0x3c>;
+                                                //         clock-names = "xclk";
+                                                //         clocks = <&mipi_clk>;
+                                                //         powerdown-gpios = <&gpio 0x51 0x0>;
+                                                //         reset-gpios = <&gpio 0x50 0x1>;
+                        
+                                                //         // port {
+                                                //         //         ov5640_out: endpoint {
+                                                //         //         remote-endpoint = <&csiss_in>;
+                                                //         //         clock-lanes = <0>;
+                                                //         //         data-lanes = <1 2>;
+                                                //         //         };
+                                                //         // };
+                                                // };
+                                        };
+
+                                };
+                        };
+                        
+                        
+                        /*
+                        clk_wiz: clk@0 {
+                                #clock-cells = <0x01>;
+                                clock-names = "clk_in1";
+                                clocks = <&zynqmp_clk 71>;
+                                clock-output-names = "clk_out0", "clk_out1";
+                                compatible = "xlnx, clk-wiz-6.0", "xlnx, clocking-wizard";
+                                reg = <0x00 0x00 0x00 0x10000>;
+                                speed-grade = <0x01>;
+                        };*/
+                        /*
+                        misc_clk_0: misc_clk_0 {
+                                #clock-cells = <0>;
+                                clock-frequency = <149998500>;
+                                compatible = "fixed-clock";
+                        };
+                        mipi_csi2_rx: mipi_csi2_rx_subsystem@a0000000 {
+                                clock-names = "lite_aclk", "dphy_clk_200M", "video_aclk";
+                                clocks = <&misc_clk_0>, <&misc_clk_1>, <&misc_clk_0>;
+                                compatible = "xlnx,mipi-csi2-rx-subsystem-5.1";
+                                interrupt-names = "csirxss_csi_irq";
+                                interrupt-parent = <&gic>;
+                                interrupts = <0 90 4>;
+                                reg = <0x0 0xa0000000 0x0 0x1000>;
+                                xlnx,axis-tdata-width = <32>;
+                                xlnx,cal-mode = "NONE";
+                                xlnx,clk-io-swap = "false";
+                                xlnx,clk-lane-io-position = <0x1a>;
+                                xlnx,clk-lp-io-swap = "false";
+                                xlnx,csi-en-activelanes = "true";
+                                xlnx,csi-en-crc = "true";
+                                xlnx,csi-filter-userdatatype = "false";
+                                xlnx,csi-opt1-regs = "false";
+                                xlnx,csi-pxl-format = "RAW10";
+                                xlnx,csi2rx-dbg = <0x0>;
+                                xlnx,data-lane0-io-position = <0x1c>;
+                                xlnx,data-lane1-io-position = <0x1e>;
+                                xlnx,data-lane2-io-position = <0x6>;
+                                xlnx,data-lane3-io-position = <0x8>;
+                                xlnx,dl0-io-swap = "false";
+                                xlnx,dl0-lp-io-swap = "false";
+                                xlnx,dl1-io-swap = "false";
+                                xlnx,dl1-lp-io-swap = "false";
+                                xlnx,dl2-io-swap = "false";
+                                xlnx,dl2-lp-io-swap = "false";
+                                xlnx,dl3-io-swap = "false";
+                                xlnx,dl3-lp-io-swap = "false";
+                                xlnx,dphy-lanes = <0x2>;
+                                xlnx,dphy-mode = "SLAVE";
+                                xlnx,en-7s-linerate-check = "false";
+                                xlnx,en-active-lanes ;
+                                xlnx,en-bg0-pin0 = "false";
+                                xlnx,en-bg0-pin6 = "false";
+                                xlnx,en-bg1-pin0 = "false";
+                                xlnx,en-bg1-pin6 = "false";
+                                xlnx,en-bg2-pin0 = "false";
+                                xlnx,en-bg2-pin6 = "false";
+                                xlnx,en-bg3-pin0 = "false";
+                                xlnx,en-bg3-pin6 = "false";
+                                xlnx,en-clk300m = "false";
+                                xlnx,en-cnts-byte-clk = "false";
+                                xlnx,en-csi-v2-0 = "true";
+                                xlnx,en-exdesigns = "false";
+                                xlnx,en-ext-tap = "false";
+                                xlnx,en-rxppi-as-mon = "false";
+                                xlnx,en-timeout-regs = "false";
+                                xlnx,en-vcx = "false";
+                                xlnx,esc-timeout = <0x6400>;
+                                xlnx,exdes-board = "ZCU102";
+                                xlnx,exdes-config = "MIPI_Video_Pipe_Camera_to_Display";
+                                xlnx,exdes-fmc = "LI-IMX274MIPI-FMC V1.0 Single Sensor";
+                                xlnx,exdesboard-version = <0x2>;
+                                xlnx,fifo-rd-en-control = "true";
+                                xlnx,hs-line-rate = <0x118>;
+                                xlnx,hs-settle-ns = <0xaa>;
+                                xlnx,hs-timeout = <0x10005>;
+                                xlnx,idly-group-name = "mipi_csi2rx_idly_group";
+                                xlnx,idly-tap = <0x1>;
+                                xlnx,init = <0x186a0>;
+                                xlnx,int-qor-check = <0x0>;
+                                xlnx,is-7series = "false";
+                                xlnx,is-versal = "false";
+                                xlnx,lprx-disable-extport = <0x0>;
+                                xlnx,max-lanes = <2>;
+                                xlnx,mipi-slv-int = <0x0>;
+                                xlnx,ooc-vid-clk = "6.666";
+                                xlnx,ppc = <1>;
+                                xlnx,rcve-alt-deskew-seq = "false";
+                                xlnx,rcve-deskew-seq = "false";
+                                xlnx,share-idlyctrl = "false";
+                                xlnx,sprt-isp-bridge = "false";
+                                xlnx,stretch-line-rate = <0x9c4>;
+                                xlnx,vfb ;
+
+                                csiss_ports: ports {
+                                        #address-cells = <1>;
+                                        #size-cells = <0>;
+                                        csiss_port0: port@0 {
+                                                // Fill cfa-pattern=rggb for raw data types, other fields video-format and video-width user needs to fill 
+                                                reg = <0>;
+                                                xlnx,cfa-pattern = "rggb";
+                                                xlnx,video-format = <0>;
+                                                xlnx,video-width = <8>;
+                                                // csiss_out: endpoint {
+                                                //         remote-endpoint =  <&demosaic_in>;
+                                                // };
+                                        };
+                                        csiss_port1: port@1 {
+                                        //  Fill cfa-pattern=rggb for raw data  types, other fields video-format,video-width user needs to fill 
+                                        //  User need to add something like  remote-endpoint=<&out> under the node csiss_in:endpoint 
+                                                reg = <1>;
+                                                xlnx,cfa-pattern = "rggb";
+                                                xlnx,video-format = <0>;
+                                                xlnx,video-width = <8>;
+                                                csiss_in: endpoint {
+                                                        data-lanes = <1 2>;
+                                                        remote-endpoint =  <&ov5640_out>;
+                                                };
+                                        };
+                                };
+                        };/*
+                        demosaic: v_demosaic@a0030000 {
+                                clock-names = "ap_clk";
+                                clocks = <&misc_clk_0>;
+                                compatible = "xlnx,v-demosaic-1.1", "xlnx,v-demosaic";
+                                interrupt-names = "interrupt";
+                                interrupt-parent = <&gic>;
+                                interrupts = <0 93 4>;
+                                reg = <0x0 0xa0030000 0x0 0x10000>;
+                                xlnx,s-axi-ctrl-addr-width = <0x6>;
+                                xlnx,s-axi-ctrl-data-width = <0x20>;
+                                xlnx,max-width = <1280>;
+                                xlnx,max-height = <720>;
+                                ports {
+                                        #address-cells = <1>;
+                                        #size-cells = <0>;
+
+                                        port@0 {
+                                                reg = <0>;
+                                                xlnx,video-width = <8>;
+
+                                                demosaic_in: endpoint {
+                                                        remote-endpoint = <&csiss_out>;
+                                                };
+                                        };
+
+                                        port@1 {
+                                                reg = <1>;
+                                                xlnx,video-width = <8>;
+
+                                                demosaic_out: endpoint {
+                                                        remote-endpoint = <&gamma_in>;
+                                                };
+                                        };
+                                };
+                                
+                        };
+                        gamma: v_gamma_lut@a0040000 {
+                                clock-names = "ap_clk";
+                                clocks = <&misc_clk_0>;
+                                compatible = "xlnx,v-gamma-lut-1.1", "xlnx,v-gamma-lut";
+                                interrupt-names = "interrupt";
+                                interrupt-parent = <&gic>;
+                                interrupts = <0 94 4>;
+                                reg = <0x0 0xa0040000 0x0 0x10000>;
+                                xlnx,s-axi-ctrl-addr-width = <13>;
+                                xlnx,s-axi-ctrl-data-width = <32>;
+                                xlnx,max-width = <1280>;
+                                xlnx,max-height = <720>;
+                                ports {
+                                        #address-cells = <1>;
+                                        #size-cells = <0>;
+
+                                        port@0 {
+                                                reg = <0>;
+                                                xlnx,video-width = <8>;
+
+                                                gamma_in: endpoint {
+                                                        remote-endpoint = <&demosaic_out>;
+                                                };
+                                        };
+
+                                        port@1 {
+                                                reg = <1>;
+                                                xlnx,video-width = <8>;
+
+                                                gamma_out: endpoint {
+                                                        remote-endpoint = <&vcap_in>;
+                                                };
+                                        };
+                                };
+                        };
+                        vcap0: video_cap {
+                                compatible = "xlnx,video";
+                                dmas = <&vdma 0>;
+                                dma-names = "port0";
+                        
+                                ports {
+                                #address-cells = <1>;
+                                #size-cells = <0>;
+                        
+                                        port@0 {
+                                                reg = <0>;
+                                                direction = "input";
+                                                vcap_in: endpoint {
+                                                        remote-endpoint = <&gamma_out>;
+                                                };
+                                        };
+                                };
+                        };
+                        vdma: dma@a0020000 {
+                                #dma-cells = <1>;
+                                clock-names = "s_axi_lite_aclk", "m_axi_mm2s_aclk", "m_axi_s2mm_aclk",
+                                        "m_axis_mm2s_aclk", "s_axis_s2mm_aclk";
+                                clocks = <&misc_clk_0>, <&misc_clk_0>, <&misc_clk_0>, <&misc_clk_0>, <&misc_clk_0>;
+                                compatible = "xlnx,axi-vdma-6.3", "xlnx,axi-vdma-1.00.a";
+                                interrupt-names = "mm2s_introut", "s2mm_introut";
+                                interrupt-parent = <&gic>;
+                                interrupts = <0 92 4 0 91 4>;
+                                reg = <0x0 0xa0020000 0x0 0x10000>;
+                                xlnx,addrwidth = <0x20>;
+                                xlnx,flush-fsync = <0x1>;
+                                xlnx,num-fstores = <0x3>;
+                                dma-channel@a0020000 {
+                                        compatible = "xlnx,axi-vdma-mm2s-channel";
+                                        interrupts = <0 92 4>;
+                                        xlnx,datawidth = <0x20>;
+                                        xlnx,device-id = <0x0>;
+                                        xlnx,genlock-mode ;
+                                };
+                                dma-channel@a0020030 {
+                                        compatible = "xlnx,axi-vdma-s2mm-channel";
+                                        interrupts = <0 91 4>;
+                                        xlnx,datawidth = <0x18>;
+                                        xlnx,device-id = <0x0>;
+                                        xlnx,genlock-mode ;
+                                };
+                        };/*
+                        misc_clk_1: misc_clk_1 {
+                                #clock-cells = <0>;
+                                clock-frequency = <199998000>;
+                                compatible = "fixed-clock";
+                        };
+                        v_frmbuf_wr_0: v_frmbuf_wr@a0050000 {
+                                #dma-cells = <1>;
+                                clock-names = "ap_clk";
+                                clocks = <&misc_clk_0>;
+                                compatible = "xlnx,v-frmbuf-wr-2.2", "xlnx,axi-frmbuf-wr-v2.1";
+                                interrupt-names = "interrupt";
+                                interrupt-parent = <&gic>;
+                                interrupts = <0 95 4>;
+                                reg = <0x0 0xa0050000 0x0 0x10000>;
+                                xlnx,dma-addr-width = <32>;
+                                xlnx,dma-align = <8>;
+                                xlnx,max-height = <720>;
+                                xlnx,max-width = <1280>;
+                                xlnx,pixels-per-clock = <1>;
+                                xlnx,s-axi-ctrl-addr-width = <0x7>;
+                                xlnx,s-axi-ctrl-data-width = <0x20>;
+                                xlnx,vid-formats = "bgr888";
+                                xlnx,video-width = <8>;
+                        };*/
+                };
+        };
+};

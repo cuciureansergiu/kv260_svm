@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vivadoHLSLog:LogRoot xmlns:vivadoHLSLog="www.xilinx.com/vivadoHLSLog">
+  <errorLogs>
+    <logs>
+      <synLog/>
+      <simLog/>
+      <mgLog/>
+      <packageLog/>
+      <csimLog/>
+    </logs>
+  </errorLogs>
+  <warningLogs>
+    <logs>
+      <synLog>
+        <logs message="WARNING: [RTGEN 206-101] Design contains AXI ports. Reset is fixed to synchronous and active low." projectName="kv260_3d_svm" solutionName="solution1" date="2022-03-30T10:49:47.474+0300" type="Warning"/>
+        <logs message="WARNING: [BIND 205-102] The specified resource core for memory 'line_buffer_l1' will be ignored if a simpler one can be used." projectName="kv260_3d_svm" solutionName="solution1" date="2022-03-30T10:49:46.124+0300" type="Warning"/>
+        <logs message="WARNING: [BIND 205-102] The specified resource core for memory 'line_buffer_1' will be ignored if a simpler one can be used." projectName="kv260_3d_svm" solutionName="solution1" date="2022-03-30T10:49:46.117+0300" type="Warning"/>
+        <logs message="WARNING: [BIND 205-102] The specified resource core for memory 'line_buffer_0' will be ignored if a simpler one can be used." projectName="kv260_3d_svm" solutionName="solution1" date="2022-03-30T10:49:46.111+0300" type="Warning"/>
+        <logs message="WARNING: [HLS 200-885] The II Violation in module 'sobel' (loop 'VITIS_LOOP_107_1'): Unable to schedule 'store' operation ('line_buffer_l1_addr_write_ln49', ../src/filters/sobel/sobel.cpp:49) of variable '__Val2__', /wrk/ci/prod/2021.1/rdi_builds/continuous/2021_06_10_3247384/src/shared/hls/clib/hlsmath/include/hls_sqrt_apfixed.h:381 on array 'line_buffer_l1', ../src/filters/sobel/sobel.cpp:95 due to limited memory ports (II = 1). Please consider using a memory core with more ports or partitioning the array 'line_buffer_l1'.&#xA;Resolution: For help on HLS 200-885 see www.xilinx.com/cgi-bin/docs/rdoc?v=2021.1;t=hls+guidance;d=200-885.html" projectName="kv260_3d_svm" solutionName="solution1" date="2022-03-30T10:49:45.901+0300" type="Warning"/>
+        <logs message="WARNING: [SYN 201-103] Legalizing function name 'sqrt_fixed&lt;32, 32>' to 'sqrt_fixed_32_32_s'." projectName="kv260_3d_svm" solutionName="solution1" date="2022-03-30T10:49:45.172+0300" type="Warning"/>
+        <logs message="WARNING: [XFORM 203-505] Ignored pipeline directive for loop 'Loop-1' (/wrk/ci/prod/2021.1/rdi_builds/continuous/2021_06_10_3247384/src/shared/hls/clib/hlsmath/include/hls_cordic_apfixed.h:87) because its parent loop or function is pipelined." projectName="kv260_3d_svm" solutionName="solution1" date="2022-03-30T10:49:43.925+0300" type="Warning"/>
+        <logs message="WARNING: [HLS 214-281] Estimating pipelined loop 'VITIS_LOOP_107_1' (../src/filters/sobel/sobel.cpp:107:20) in function 'sobel' with estimated II increased from II=1 to II=+infinity because of sub function call 'call' (../src/filters/sobel/sobel.cpp:107:20)" projectName="kv260_3d_svm" solutionName="solution1" date="2022-03-30T10:49:42.477+0300" type="Warning"/>
+        <logs message="WARNING: [HLS 207-5514] 'Resource pragma' is deprecated, and it will be removed in future release. It is suggested to replace it with 'bind_op/bind_storage pragma'.: ../src/filters/sobel/sobel.cpp:104:9" projectName="kv260_3d_svm" solutionName="solution1" date="2022-03-30T10:49:35.955+0300" type="Warning"/>
+        <logs message="WARNING: [HLS 207-5514] 'Resource pragma' is deprecated, and it will be removed in future release. It is suggested to replace it with 'bind_op/bind_storage pragma'.: ../src/filters/sobel/sobel.cpp:103:9" projectName="kv260_3d_svm" solutionName="solution1" date="2022-03-30T10:49:35.950+0300" type="Warning"/>
+        <logs message="WARNING: [HLS 207-5072] result of comparison of constant 23 with expression of type 'bool' is always true: ../src/filters/sobel/sobel.cpp:69:23" projectName="kv260_3d_svm" solutionName="solution1" date="2022-03-30T10:49:35.945+0300" type="Warning"/>
+        <logs message="WARNING: [HLS 207-5301] unused parameter 'print': /data/tools/Xilinx/Vitis_HLS/2021.1/common/technology/autopilot/ap_int_base.h:792:16" projectName="kv260_3d_svm" solutionName="solution1" date="2022-03-30T10:49:35.940+0300" type="Warning"/>
+        <logs message="WARNING: [HLS 207-5528] Ignore interface attribute or pragma which is not used in top function: ../src/filters/sobel/sobel.cpp:101:9" projectName="kv260_3d_svm" solutionName="solution1" date="2022-03-30T10:49:35.936+0300" type="Warning"/>
+        <logs message="WARNING: [HLS 207-5514] 'Resource pragma' is deprecated, and it will be removed in future release. It is suggested to replace it with 'bind_op/bind_storage pragma'.: ../src/filters/sobel/sobel.cpp:104:9" projectName="kv260_3d_svm" solutionName="solution1" date="2022-03-30T10:49:11.230+0300" type="Warning"/>
+        <logs message="WARNING: [HLS 207-5514] 'Resource pragma' is deprecated, and it will be removed in future release. It is suggested to replace it with 'bind_op/bind_storage pragma'.: ../src/filters/sobel/sobel.cpp:103:9" projectName="kv260_3d_svm" solutionName="solution1" date="2022-03-30T10:49:11.226+0300" type="Warning"/>
+        <logs message="WARNING: [HLS 207-5072] result of comparison of constant 23 with expression of type 'bool' is always true: ../src/filters/sobel/sobel.cpp:69:23" projectName="kv260_3d_svm" solutionName="solution1" date="2022-03-30T10:49:11.220+0300" type="Warning"/>
+      </synLog>
+      <simLog/>
+      <mgLog/>
+      <packageLog/>
+      <csimLog/>
+    </logs>
+  </warningLogs>
+</vivadoHLSLog:LogRoot>

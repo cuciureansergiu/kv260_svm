@@ -1,6 +1,6 @@
 export ROOT_DIR JOBS NAME PART
 
-JOBS:=2
+JOBS?=2
 NAME:=kv260_3d_svm
 PART:=xck26-sfvc784-2LV-c
 ROOT_DIR:=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))

@@ -8,7 +8,7 @@ hls/all:
 	cd ${HLS_WORKSPACE}; vitis_hls ${ROOT_DIR}/hls/build.tcl
 
 hls/fclean:
-	rm -f ${HLS_WORKSPACE}
+	rm -rf ${HLS_WORKSPACE}
 
 hls/test:
 	@echo ${SRCS}

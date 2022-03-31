@@ -21,6 +21,7 @@ static int ov5640_iic_init()
         err("Could not set the OV5640 iic switch");
         return status;
     }
+    return 0;
 }
 
 int ov5640_ping()
@@ -39,7 +40,7 @@ int ov5640_ping()
     }
 
     info("Camera detected");
-
+    return 0;
 }
 
 int ov5640_init()
@@ -102,7 +103,7 @@ int ov5640_load_config(int awb)
             return status;
         }
     }
-
+    return 0;
 }
 
 int ov5640_sw_reset()

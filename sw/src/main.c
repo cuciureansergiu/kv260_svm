@@ -41,7 +41,7 @@ int main()
 	if (status < 0)
 		return status;
 
-	status = XV_demosaic_Initialize(&cfa, XPAR_V_DEMOSAIC_0_DEVICE_ID);
+	status = XV_demosaic_Initialize(&cfa, XPAR_XV_DEMOSAIC_0_DEVICE_ID);
 	//	 XV_demosaic_Set_HwReg_width(&cfa, video_modes[v_1280x720].width);
 	//	 XV_demosaic_Set_HwReg_height(&cfa, video_modes[v_1280x720].height);
 	XV_demosaic_Set_HwReg_width(&cfa, 1280);
@@ -51,7 +51,7 @@ int main()
 	XV_demosaic_Start(&cfa);
 
 	gamma_calc(1.2);
-	XV_gamma_lut_Initialize(&gamma_inst, XPAR_V_GAMMA_LUT_0_DEVICE_ID);
+	XV_gamma_lut_Initialize(&gamma_inst, XPAR_XV_GAMMA_LUT_0_DEVICE_ID);
 	XV_gamma_lut_Set_HwReg_width(&gamma_inst, 1280);
 	XV_gamma_lut_Set_HwReg_height(&gamma_inst, 720);
 	XV_gamma_lut_Set_HwReg_video_format(&gamma_inst, 0x00);
@@ -61,13 +61,13 @@ int main()
 	XV_gamma_lut_Start(&gamma_inst);
 	XV_gamma_lut_EnableAutoRestart(&gamma_inst);
 
-	ov5640_ping();
+	status = ov5640_ping();
 //	ov5640_sw_reset();
 //	usleep(1000000);
 //	ov5640_load_config(1);
 	
 	vdma_start();
-	Xil_DCacheFlush();
+		Xil_DCacheFlush();
 	// addi9035_remove();
 	int a;
 	while (1)
